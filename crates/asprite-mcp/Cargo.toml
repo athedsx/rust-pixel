@@ -1,0 +1,40 @@
+[package]
+name = "asprite-mcp"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Local MCP bridge for Aseprite"
+publish = false
+default-run = "asprite-mcp"
+
+[[bin]]
+name = "asprite-mcp"
+path = "src/main.rs"
+
+[[bin]]
+name = "rust-pixel-agent"
+path = "src/agent.rs"
+
+[dependencies]
+anyhow = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+image = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+rmcp = { workspace = true, features = ["server", "transport-io"] }
+dirs = { workspace = true }
+pixel-core = { path = "../pixel-core" }
+uuid = { version = "1.8", features = ["v4", "serde"] }
+base64 = "0.22"
+schemars.workspace = true
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Security_Credentials", "Win32_UI_Shell", "Win32_UI_WindowsAndMessaging"] }
+
+[dev-dependencies]
+tempfile = "3"

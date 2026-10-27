@@ -1,0 +1,30 @@
+[workspace]
+resolver = "2"
+default-members = ["crates/asprite-mcp"]
+members = [
+    "crates/asprite-mcp",
+    "crates/pixel-core",
+]
+
+[workspace.package]
+version = "0.5.0"
+rust-version = "1.89"
+edition = "2024"
+license = "MIT"
+repository = "https://github.com/athedsx/rust-pixel"
+
+[workspace.dependencies]
+anyhow = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+image = { version = "0.25", default-features = false, features = ["png"] }
+tokio = { version = "1.40", features = ["fs", "io-std", "io-util", "macros", "process", "rt-multi-thread", "sync", "time"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+rmcp = "0.2"
+dirs = "5.0"
+schemars = "0.8"
+
+[profile.release]
+lto = "thin"
+strip = true

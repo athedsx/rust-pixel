@@ -1,0 +1,14 @@
+{
+  "name": "rust-pixel",
+  "displayName": "Rust Pixel Bridge",
+  "description": "A native sprite assistant with Codex, OpenRouter and MCP support.",
+  "version": "0.5.0",
+  "author": { "name": "Arthur", "url": "https://github.com/athedsx" },
+  "publisher": "athedsx",
+  "repository": "https://github.com/athedsx/rust-pixel",
+  "license": "MIT",
+  "categories": ["Scripts"],
+  "contributes": {
+    "scripts": [{ "path": "./init.lua" }]
+  }
+}

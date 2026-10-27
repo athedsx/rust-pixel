@@ -1,0 +1,38 @@
+name: Bug report
+description: Report a reproducible problem with Rust Pixel Bridge.
+body:
+  - type: markdown
+    attributes:
+      value: Do not attach personal artwork, conversations, API keys, tokens or unreviewed logs. Report security vulnerabilities privately; see SECURITY.md.
+  - type: input
+    id: version
+    attributes:
+      label: Rust Pixel version
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Windows and Aseprite versions
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Use a minimal example with dummy data.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include only the relevant, redacted error message. Do not paste configuration or authentication files.
+    validations:
+      required: true
