@@ -13,7 +13,9 @@ if (Test-Path -LiteralPath $uninstallKey) {
     throw 'Ja existe uma instalacao registrada. Execute este teste em um perfil Windows sem Rust Pixel Bridge instalado.'
 }
 $testId = [Guid]::NewGuid().ToString('N')
-$testGroup = "Rust Pixel Test $testId"
+$groupSetting = Select-String -LiteralPath (Join-Path $projectRoot 'installer\rust-pixel.iss') -Pattern '^DefaultGroupName=(.+)$'
+if (-not $groupSetting) { throw 'DefaultGroupName nao encontrado no instalador.' }
+$startMenuGroup = $groupSetting.Matches[0].Groups[1].Value.Trim()
 $testPath = Join-Path $projectRoot "target\installer-test-$testId"
 $appPath = Join-Path $testPath 'App'
 $asepriteDir = Join-Path $testPath 'Aseprite'
@@ -25,7 +27,7 @@ try {
     $process = Start-Process -FilePath $SetupPath -ArgumentList @(
         '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/TASKS=""',
         "/DIR=`"$appPath`"", "/ASEPRITEDIR=`"$asepriteDir`"",
-        "/GROUP=`"$testGroup`"", "/LOG=`"$(Join-Path $testPath 'install.log')`""
+        "/LOG=`"$(Join-Path $testPath 'install.log')`""
     ) -PassThru -WindowStyle Hidden
     if (-not $process.WaitForExit(30000)) { Stop-Process -Id $process.Id; throw 'Tempo limite na instalacao.' }
     $process.Refresh()
@@ -41,7 +43,8 @@ try {
     if ($config.mcpServers.'rust-pixel'.command -ne (Join-Path $appPath 'asprite-mcp.exe')) {
         throw 'O caminho registrado para o servidor esta incorreto.'
     }
-    $linkDirectory = Join-Path (Join-Path ([Environment]::GetFolderPath('StartMenu')) 'Programs') $testGroup
+    # Inno Setup ignores /GROUP when DisableProgramGroupPage=yes.
+    $linkDirectory = Join-Path (Join-Path ([Environment]::GetFolderPath('StartMenu')) 'Programs') $startMenuGroup
     $linkPath = (Get-ChildItem -LiteralPath $linkDirectory -Filter '*.lnk' | Where-Object { $_.Name -like 'Verificar*' }).FullName
     $shell = New-Object -ComObject WScript.Shell
     $shortcut = $shell.CreateShortcut($linkPath)

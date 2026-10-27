@@ -205,7 +205,7 @@ local function apply_ops(sprite, ops, default_frame, default_layer, all_frames)
 end
 
 function Bridge.new(queue_dir, version)
-  local self = setmetatable({ queue_dir=queue_dir, ids={}, enabled=true, version=tostring(version or "0.5.0") }, Bridge)
+  local self = setmetatable({ queue_dir=queue_dir, ids={}, enabled=true, version=tostring(version or "0.5.1") }, Bridge)
   for _,name in ipairs({"inbox", "outbox", "ack", "assets"}) do
     assert(app.fs.makeAllDirectories(app.fs.joinPath(queue_dir, name)), "Cannot create bridge directory")
   end

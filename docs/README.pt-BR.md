@@ -8,7 +8,7 @@ Painel de conversa dentro do Aseprite, com Codex, OpenRouter e ferramentas para 
 
 Requisitos: Windows 10 ou 11 de 64 bits e Aseprite 1.3.15 ou superior.
 
-1. Execute `RustPixelBridge-0.5.0-windows-x64-Setup.exe`.
+1. Execute `RustPixelBridge-0.5.1-windows-x64-Setup.exe`.
 2. Mantenha as pastas sugeridas. Para Aseprite portátil, selecione a pasta de configuração que contém `aseprite.ini`.
 3. Reinicie o Aseprite e permita os acessos solicitados pela extensão no primeiro uso.
 4. Clique no botão de modelo no rodapé do painel. Escolha **Codex** ou **OpenRouter** em **Provedor** e clique em **Conectar**. Escolha um modelo, escreva seu pedido e clique em **Enviar**.
@@ -37,7 +37,7 @@ Não é necessário instalar Rust ou manter um terminal aberto. O assistente ini
 
 ### Pacote ZIP
 
-Extraia `rust-pixel-0.5.0-windows-x64.zip` e execute `install.bat`. O script instala os executáveis e a extensão. Os assets e as conversas locais são mantidos ao remover a extensão com `uninstall.bat`.
+Extraia `rust-pixel-0.5.1-windows-x64.zip` e execute `install.bat`. O script instala os executáveis e a extensão. Os assets e as conversas locais são mantidos ao remover a extensão com `uninstall.bat`.
 
 ### Clientes MCP
 

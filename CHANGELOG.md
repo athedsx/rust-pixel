@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.1
+
+First published Windows packages.
+
+### Fixed
+
+- Installer validation now reads the configured default Start Menu group instead of relying on an override ignored by Inno Setup when that wizard page is disabled.
+
 ## 0.5.0
 
 First public source release.
