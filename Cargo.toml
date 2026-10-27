@@ -21,7 +21,7 @@ image = { version = "0.25", default-features = false, features = ["png"] }
 tokio = { version = "1.40", features = ["fs", "io-std", "io-util", "macros", "process", "rt-multi-thread", "sync", "time"] }
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
-rmcp = "0.2"
+rmcp = "3.7"
 dirs = "5.0"
 schemars = "0.8"
 
